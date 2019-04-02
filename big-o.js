@@ -36,7 +36,6 @@
 
 // console.log(makeTri(6));
 
-
 // function strSplitter(str, seperator = '/') {
 //   let arr = [];
 
@@ -82,15 +81,15 @@
 // console.log(factorial(5));
 
 /* from, buffer, and to are the 3 pegs */
-function hanoi(disks, from, buffer, to) {
-  if(disks === 1) {
-    console.log(`moving disk 1 from ${from} to ${to}`);
-    return true;
+
+function towerOfHanoi(disk, rodA, rodB, rodC, move = 0) {
+  if (disk > 0) {
+    towerOfHanoi(disk - 1, rodA, rodC, rodB, move);
+    console.log(
+      'Move #: ' + move + ' disk ' + disk + ' from ' + rodA + ' to ' + rodC
+    );
+    move++;
+    towerOfHanoi(disk - 1, rodB, rodA, rodC, move);
   }
-
-  hanoi(disks - 1, from, buffer, to);
-  console.log(`moving disk ${disks} from ${from} to ${to}`);
-  hanoi(disks - 1, buffer, from, to);
 }
-
-hanoi(2, 'A', 'B', 'C');
+towerOfHanoi(2, 'A', 'B', 'C');
